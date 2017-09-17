@@ -9,18 +9,16 @@ def gamma_correction(src_path, dest_path, a, b):
     """
     Performs gamma correction.
 
-    :param src_path: path to the source image in [0, 1] range
-    :param dest_path: path to a new image
-    :param a: parameter of transformation
-    :param b: parameter of transformation
+    :param src_path: Path to the source image in [0, 1] range
+    :param dest_path: Path to a new image
+    :param a: Parameter of transformation
+    :param b: Parameter of transformation
     """
     ext = src_path.split(".")[-1]
 
     img = cv2.imread(src_path)
     img = np.sum(img, axis=2) / 3
     img /= 255
-    indexes = img > 1
-    img[indexes] = 1
 
     corrected_image = a * img**b
     indexes = corrected_image > 1

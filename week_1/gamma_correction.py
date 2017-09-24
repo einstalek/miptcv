@@ -14,8 +14,6 @@ def gamma_correction(src_path, dest_path, a, b):
     :param a: Parameter of transformation
     :param b: Parameter of transformation
     """
-    ext = src_path.split(".")[-1]
-
     img = cv2.imread(src_path)
     img = np.sum(img, axis=2) / 3
     img /= 255
@@ -25,7 +23,7 @@ def gamma_correction(src_path, dest_path, a, b):
     corrected_image[indexes] = 1
     corrected_image *= 255
     
-    cv2.imwrite(dest_path + "corrected_image." + ext, corrected_image)
+    cv2.imwrite(dest_path, corrected_image)
 
 
 if __name__ == "__main__":

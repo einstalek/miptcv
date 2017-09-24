@@ -21,7 +21,6 @@ def autontrast(src_path, dest_path, white_perc, black_perc):
     :param white_perc: Percentage of white pixels
     :param black_perc: Percentage of black pixels
     """
-    ext = src_path.split(".")[-1]
     img = cv2.imread(src_path)
     img = np.sum(img, axis=2) / 3
 
@@ -42,7 +41,7 @@ def autontrast(src_path, dest_path, white_perc, black_perc):
     img_flatten = np.array(list(map(lambda x: fix_brightness(x, bright_min, bright_max), img_flatten)))
     fixed = img_flatten.reshape(img.shape)
 
-    cv2.imwrite(dest_path + "autocontrast_image." + ext, fixed)
+    cv2.imwrite(dest_path, fixed)
 
 if __name__=="__main__":
     assert len(argv) == 5
